@@ -53,6 +53,12 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .source-toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .source-toggle-icon.open {
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -67,6 +73,7 @@
                 <a href="#comparison" class="nav-link text-gray-600">Market Deep Dive</a>
                 <a href="#dilemma" class="nav-link text-gray-600">Modeling Dilemma</a>
                 <a href="#solution" class="nav-link text-gray-600">Solution</a>
+                <a href="#sources" class="nav-link text-gray-600">Sources</a>
             </div>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-600 focus:outline-none">
@@ -79,6 +86,7 @@
             <a href="#comparison" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Market Deep Dive</a>
             <a href="#dilemma" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Modeling Dilemma</a>
             <a href="#solution" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Solution</a>
+            <a href="#sources" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Sources</a>
         </div>
     </header>
 
@@ -99,7 +107,7 @@
                     </div>
                     <div class="text-center p-6 bg-accent-gold/10 rounded-lg">
                         <h3 class="text-2xl font-bold mb-2 text-amber-800">Proposed Solution</h3>
-                        <p class="text-gray-700">Adopt a <strong class="font-semibold">Hierarchical (Multilevel) Marketing Mix Model</strong> to accurately capture country-specific nuances and deliver reliable ROI insights.</p>
+                        <p class="text-gray-700">Adopt a <strong class="font-semibold">Hierarchical (Multilevel) Marketing Mix Model</strong> to accurately capture country-specific nuances and deliver reliable ROI insights.<sup>[60, 61, 62]</sup></p>
                     </div>
                 </div>
             </div>
@@ -111,14 +119,14 @@
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-12 fade-in">
                 <div>
                     <h3 class="text-2xl font-bold mb-4 text-center accent-blue">Market Scale & Growth (2024)</h3>
-                    <p class="text-center text-gray-600 mb-6">The U.S. market's sheer size contrasts with Canada's faster growth rate, indicating different stages of market maturity.</p>
+                    <p class="text-center text-gray-600 mb-6">The U.S. market's sheer size contrasts with Canada's faster growth rate, indicating different stages of market maturity.<sup>[1, 3, 4]</sup></p>
                     <div class="chart-container">
                         <canvas id="marketSizeChart"></canvas>
                     </div>
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold mb-4 text-center accent-blue">Projected Growth (CAGR)</h3>
-                    <p class="text-center text-gray-600 mb-6">Canada is positioned as the fastest-growing market in North America, signaling high potential for return on investment.</p>
+                    <p class="text-center text-gray-600 mb-6">Canada is positioned as the fastest-growing market in North America, signaling high potential for return on investment.<sup>[1, 3, 5]</sup></p>
                     <div class="chart-container">
                         <canvas id="growthChart"></canvas>
                     </div>
@@ -131,24 +139,24 @@
                     <div class="text-center p-6 border-2 border-gray-200 rounded-lg">
                         <h4 class="text-xl font-bold mb-4">🇺🇸 United States</h4>
                         <ul class="space-y-3 text-left text-gray-700">
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Status & Self-Expression:</strong> Driven by celebrity culture and a desire for unique, personalized pieces.</li>
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Price-to-Value:</strong> More sensitive to affordability and value comparisons within the luxury tier.</li>
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Digital Discovery:</strong> More likely to use online magazines and digital channels for trend information.</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Status & Self-Expression:</strong> Driven by celebrity culture and a desire for unique, personalized pieces.<sup>[1, 2, 20]</sup></li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Price-to-Value:</strong> More sensitive to affordability and value comparisons within the luxury tier.<sup>[1, 13]</sup></li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Digital Discovery:</strong> More likely to use online magazines and digital channels for trend information.<sup>[43]</sup></li>
                         </ul>
                     </div>
                     <div class="text-center p-6 border-2 border-gray-200 rounded-lg">
                         <h4 class="text-xl font-bold mb-4">🇨🇦 Canada</h4>
                         <ul class="space-y-3 text-left text-gray-700">
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Ethical & Sustainable:</strong> Places a high premium on ethically sourced materials (e.g., CanadaMark diamonds).</li>
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Local Affinity:</strong> Strong preference for "Made in Canada" craftsmanship, supporting domestic brands.</li>
-                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Print's Prestige:</strong> Views reading print magazines and newspapers as a luxurious experience in itself.</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Ethical & Sustainable:</strong> Places a high premium on ethically sourced materials (e.g., CanadaMark diamonds).<sup>[6, 13, 17, 18]</sup></li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Local Affinity:</strong> Strong preference for "Made in Canada" craftsmanship, supporting domestic brands.<sup>[14]</sup></li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Print's Prestige:</strong> Views reading print magazines and newspapers as a luxurious experience in itself.<sup>[14]</sup></li>
                         </ul>
                     </div>
                 </div>
             </div>
              <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 mt-16 fade-in">
                 <h3 class="text-2xl font-bold text-center mb-8 accent-blue">Cartier's Retail Footprint</h3>
-                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The vast difference in the number of owned boutiques dictates fundamentally different channel strategies, mixing direct-to-consumer (DTC) and wholesale, which complicates sales-based modeling.</p>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The vast difference in the number of owned boutiques dictates fundamentally different channel strategies, mixing direct-to-consumer (DTC) and wholesale, which complicates sales-based modeling.<sup>[11, 12, 23, 24, 25]</sup></p>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="text-center p-8 bg-gray-50 rounded-lg">
                         <p class="text-7xl font-bold accent-gold">30</p>
@@ -170,19 +178,19 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4 accent-blue">🇺🇸 U.S. Designated Market Area (DMA)</h3>
                     <div class="p-4 border-l-4 border-accent-gold bg-accent-gold/5">
-                        <p><strong>Defined By:</strong> The Nielsen Company (Private)</p>
-                        <p><strong>Basis:</strong> Television Viewing Habits</p>
+                        <p><strong>Defined By:</strong> The Nielsen Company (Private)<sup>[48, 50]</sup></p>
+                        <p><strong>Basis:</strong> Television Viewing Habits<sup>[50, 51]</sup></p>
                         <p><strong>Concept:</strong> A "Media-Shed" - a region that consumes the same local TV content.</p>
-                        <p><strong>Purpose:</strong> Media planning and ad buying.</p>
+                        <p><strong>Purpose:</strong> Media planning and ad buying.<sup>[52]</sup></p>
                     </div>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4 accent-blue">🇨🇦 Canadian Census Metro Area (CMA)</h3>
                      <div class="p-4 border-l-4 border-accent-gold bg-accent-gold/5">
-                        <p><strong>Defined By:</strong> Statistics Canada (Government)</p>
-                        <p><strong>Basis:</strong> Commuting & Economic Flows</p>
+                        <p><strong>Defined By:</strong> Statistics Canada (Government)<sup>[53]</sup></p>
+                        <p><strong>Basis:</strong> Commuting & Economic Flows<sup>[53]</sup></p>
                         <p><strong>Concept:</strong> A "Commuter-Shed" - a functional economic region.</p>
-                        <p><strong>Purpose:</strong> Socio-economic analysis.</p>
+                        <p><strong>Purpose:</strong> Socio-economic analysis.<sup>[53]</sup></p>
                     </div>
                 </div>
                  <div class="md:col-span-2 text-center mt-4">
@@ -192,7 +200,7 @@
 
             <div class="mt-16 bg-white p-8 rounded-xl shadow-lg border border-gray-200 fade-in">
                 <h3 class="text-2xl font-bold text-center mb-8 accent-blue">The Pitfall of "Pooling" Data</h3>
-                <p class="text-center text-gray-600 mb-8">A simple pooled model averages the distinct market realities, creating a single, misleading result. It masks the higher ROI in Canada's growth market and the nuanced performance across diverse U.S. regions.</p>
+                <p class="text-center text-gray-600 mb-8">A simple pooled model averages the distinct market realities, creating a single, misleading result. It masks the higher ROI in Canada's growth market and the nuanced performance across diverse U.S. regions.<sup>[55, 56]</sup></p>
                 <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                     <div class="w-full md:w-1/2 p-4 border rounded-lg">
                         <h4 class="font-bold text-center mb-2">The Reality: Heterogeneity</h4>
@@ -232,7 +240,7 @@
             </div>
         </section>
 
-        <section id="solution" class="fade-in">
+        <section id="solution" class="mb-16 md:mb-24 fade-in">
             <h2 class="text-3xl font-bold text-center mb-12 accent-gold">The Path Forward: Hierarchical Modeling</h2>
             <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-200">
                 <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">The recommended solution is a Hierarchical (or Multilevel) Marketing Mix Model. This advanced approach is designed for nested data, allowing it to respect market differences while producing stable, reliable estimates of media effectiveness.</p>
@@ -250,7 +258,7 @@
                     <div class="p-6">
                         <div class="bg-accent-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
                         <h4 class="text-lg font-bold mb-2">"Borrow Strength"</h4>
-                        <p class="text-gray-600 text-sm">Uses data from all markets to improve the reliability of estimates for any single market, a process called "partial pooling."</p>
+                        <p class="text-gray-600 text-sm">Uses data from all markets to improve the reliability of estimates for any single market, a process called "partial pooling."<sup>[60, 62]</sup></p>
                     </div>
                 </div>
                 <div class="mt-10 bg-green-50 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md" role="alert">
@@ -264,11 +272,88 @@
                 </div>
             </div>
         </section>
+
+        <section id="sources" class="fade-in">
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-200">
+                <button id="source-toggle" class="w-full text-left">
+                    <h2 class="text-3xl font-bold text-center mb-4 accent-gold flex justify-center items-center">
+                        Sources & Methodology
+                        <svg class="w-6 h-6 ml-4 source-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </h2>
+                </button>
+                <div id="source-list" class="hidden mt-8">
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                        <li>Credence Research, "United States luxury Fine Jewelry Market Size and Forecast 2032"</li>
+                        <li>Statista, "Jewelry - United States"</li>
+                        <li>Grand View Research, "Canada Jewelry Market Size & Outlook, 2024-2033"</li>
+                        <li>Statista, "Luxury Goods - United States"</li>
+                        <li>Research and Markets, "Canada Jewellery Market Size, Competitors, Trends & Forecast"</li>
+                        <li>MarkWide Research, "Canada Luxury Jewelry Market 2025-2034"</li>
+                        <li>U.S. Bureau of Economic Analysis (BEA)</li>
+                        <li>World Economics, "United States's Per Capita GDP"</li>
+                        <li>Trading Economics, "United States Disposable Personal Income"</li>
+                        <li>Statistics Canada / The Globe and Mail, "Canadian household disposable income"</li>
+                        <li>Cartier, U.S. Store Locator</li>
+                        <li>Cartier, Canada Store Locator</li>
+                        <li>Teach Jewelry, "Diamond Prices in the United States vs Canada"</li>
+                        <li>The Globe and Mail, "What do affluent Canadians want in luxury goods?"</li>
+                        <li>Wikipedia, "Signet Jewelers"</li>
+                        <li>Wikipedia, "Birks Group"</li>
+                        <li>Canadian Jeweller Magazine, "Millennials Surpass Baby Boomers"</li>
+                        <li>Natural Resources Canada, "Canadian Diamond Industry"</li>
+                        <li>Wikipedia, "Birks Group"</li>
+                        <li>Arizton, "US Jewelry Market Size, Share, Trends, Growth Forecast 2030"</li>
+                        <li>Research and Markets, "Jewellery Market: Global Industry Trends, Share, Size, Growth, Opportunity and Forecast 2024-2032"</li>
+                        <li>Birks Group, "Brands"</li>
+                        <li>Wikipedia, "Cartier (jeweler)"</li>
+                        <li>The VOU, "The 27 Best Jewelry Brands In The World"</li>
+                        <li>The New York Times, "A Mall With a Real Canadian Identity"</li>
+                        <li>Richemont, "TRADING UPDATE FOR THE THREE MONTHS ENDED 30 JUNE 2024"</li>
+                        <li>Reuters, "Richemont sales beat estimates as jewellery demand holds up"</li>
+                        <li>Bloomberg, "Richemont Gains as Cartier Powers Sales Beat Amid Luxury Slowdown"</li>
+                        <li>FashionNetwork.com, "Richemont: sales up 22% in the third quarter, driven by jewellery and Asia"</li>
+                        <li>Richemont, "ANNUAL REPORT AND ACCOUNTS 2023"</li>
+                        <li>U.S. International Trade Commission, "Harmonized Tariff Schedule"</li>
+                        <li>U.S. Customs and Border Protection, "For Travelers Crossing U.S. Borders"</li>
+                        <li>Canada Border Services Agency, "Customs Tariff"</li>
+                        <li>Canada Border Services Agency, "Importing goods by mail"</li>
+                        <li>Government of Canada, "Canada-United States-Mexico Agreement (CUSMA)"</li>
+                        <li>Wikipedia, "Sales taxes in the United States"</li>
+                        <li>Tax Foundation, "State and Local Sales Tax Rates, 2024"</li>
+                        <li>Sales Tax Institute, "2024 Sales Tax Rates"</li>
+                        <li>Wikipedia, "Sales taxes in Canada"</li>
+                        <li>Retail Council of Canada, "Harmonized Sales Tax (HST)"</li>
+                        <li>Government of Canada, "GST/HST rates"</li>
+                        <li>TurboTax Canada, "A Provincial Breakdown of Sales Tax in Canada"</li>
+                        <li>Statista, "How affluent consumers in the U.S. get information about luxury goods"</li>
+                        <li>BCG, "The Future of the $1.5 Trillion Luxury Market"</li>
+                        <li>MediaRadar, "US vs Canada Consumer Advertising Trends"</li>
+                        <li>McKinsey & Company, "The State of Fashion 2024"</li>
+                        <li>Mark wide Research, "Canada Luxury Jewelry Market"</li>
+                        <li>Nielsen, "ZIP Code by DMA® Regions"</li>
+                        <li>Precisely, "Designated Market Areas - Nielsen DMA Maps"</li>
+                        <li>Nielsen, "Need to know: What is a Designated Market Area® (DMA), and why does it matter?"</li>
+                        <li>Wikipedia, "Designated market area"</li>
+                        <li>OAAA, "2021 NIELSEN DMA RANKINGS"</li>
+                        <li>Statistics Canada, "Dictionary, Census of Population, 2021 – Census metropolitan area (CMA)"</li>
+                        <li>Luminate Data, "What is DMA/CMA/Markets level data?"</li>
+                        <li>Pesaran, M. H. (2007). A simple panel unit root test in the presence of cross-section dependence.</li>
+                        <li>Hsiao, C. (2014). Analysis of panel data.</li>
+                        <li>Pesaran, M. H. (2004). General diagnostic tests for cross section dependence in panels.</li>
+                        <li>Princeton University, "Panel Data Analysis Fixed and Random Effects using Stata"</li>
+                        <li>Wooldridge, J. M. (2010). Econometric analysis of cross section and panel data.</li>
+                        <li>Gelman, A., & Hill, J. (2006). Data analysis using regression and multilevel/hierarchical models.</li>
+                        <li>Rossi, P. E., Allenby, G. M., & McCulloch, R. (2012). Bayesian statistics and marketing.</li>
+                        <li>Columbia University, "Introduction to Multilevel / Hierarchical Models"</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-gray-800 text-white mt-16">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Matthew Reda</p>
+            <p>&copy; 2025 Matthew Reda | Internal Strategic Analysis</p>
             <p class="text-xs text-gray-400 mt-2">This is a simulated interactive report based on publicly available market research data for illustrative purposes.</p>
         </div>
     </footer>
@@ -404,7 +489,7 @@
             
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = {
-                threshold: 0.2,
+                threshold: 0.15,
                 rootMargin: "0px 0px -50px 0px"
             };
             const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
@@ -441,7 +526,16 @@
             };
 
             window.addEventListener('scroll', navHighlighter);
-            navHighlighter(); 
+            navHighlighter();
+            
+            const sourceToggle = document.getElementById('source-toggle');
+            const sourceList = document.getElementById('source-list');
+            const sourceIcon = document.querySelector('.source-toggle-icon');
+
+            sourceToggle.addEventListener('click', () => {
+                sourceList.classList.toggle('hidden');
+                sourceIcon.classList.toggle('open');
+            });
         });
     </script>
 </body>
