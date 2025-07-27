@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: North American Luxury Jewelry Market Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Background: #FDFBF6, Text: #333333, Accent Gold: #C0A080, Accent Blue: #2c3e50) -->
+    <!-- Application Structure Plan: A single-page, thematic scrolling narrative. Starts with the core recommendation (use a hierarchical model), presents a high-level dashboard of US vs. Canada differences, dives into detailed comparisons (market, consumer, competition), explains the technical modeling problem (DMA vs. CMA, heterogeneity), and concludes by detailing the recommended hierarchical solution. This structure prioritizes clarity and persuasive storytelling over mirroring the report's academic layout, guiding the user from the "what" to the "why" and finally the "how." -->
+    <!-- Visualization & Content Choices: Market Size/Growth (Goal: Compare) -> Bar/Line Charts (Chart.js) with tooltips for direct data access. Consumer Drivers (Goal: Compare) -> Interactive icon-based cards (HTML/JS) to highlight psychographic differences. Modeling Problem (Goal: Explain) -> Static diagram (HTML/CSS) to visually contrast pooled vs. hierarchical models, chosen for clarity over complex animation. This approach uses the best tool for each communication goal, ensuring the core arguments are easy to grasp. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF6;
+            color: #333333;
+        }
+        .accent-gold { color: #C0A080; }
+        .bg-accent-gold { background-color: #C0A080; }
+        .border-accent-gold { border-color: #C0A080; }
+        .accent-blue { color: #2c3e50; }
+        .bg-accent-blue { background-color: #2c3e50; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #C0A080;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold accent-gold">
+                Cartier North America
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link text-gray-600">Overview</a>
+                <a href="#comparison" class="nav-link text-gray-600">Market Deep Dive</a>
+                <a href="#dilemma" class="nav-link text-gray-600">Modeling Dilemma</a>
+                <a href="#solution" class="nav-link text-gray-600">Solution</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#overview" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Overview</a>
+            <a href="#comparison" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Market Deep Dive</a>
+            <a href="#dilemma" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Modeling Dilemma</a>
+            <a href="#solution" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Solution</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+        <section id="hero" class="text-center mb-16 md:mb-24 fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Two Nations, Two Markets</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">An analysis of the U.S. and Canadian luxury jewelry sectors reveals fundamental differences that challenge unified marketing strategies and demand a more sophisticated approach to media modeling.</p>
+        </section>
+
+        <section id="overview" class="mb-16 md:mb-24 fade-in">
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h2 class="text-3xl font-bold text-center mb-2 accent-gold">The Core Finding & Recommendation</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">The U.S. and Canadian luxury markets are not interchangeable. A simplistic, pooled-data approach to measure media impact will produce flawed results. The strategic path forward requires a more nuanced model.</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center p-6 bg-gray-50 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-2 accent-blue">Primary Finding</h3>
+                        <p class="text-gray-700">The markets differ profoundly in scale, growth, consumer values, and competitive dynamics. A single strategy for North America is suboptimal.</p>
+                    </div>
+                    <div class="text-center p-6 bg-accent-gold/10 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-amber-800">Proposed Solution</h3>
+                        <p class="text-gray-700">Adopt a <strong class="font-semibold">Hierarchical (Multilevel) Marketing Mix Model</strong> to accurately capture country-specific nuances and deliver reliable ROI insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in accent-gold">Market Deep Dive: A Tale of Two Consumers</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-12 fade-in">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-center accent-blue">Market Scale & Growth (2024)</h3>
+                    <p class="text-center text-gray-600 mb-6">The U.S. market's sheer size contrasts with Canada's faster growth rate, indicating different stages of market maturity.</p>
+                    <div class="chart-container">
+                        <canvas id="marketSizeChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-center accent-blue">Projected Growth (CAGR)</h3>
+                    <p class="text-center text-gray-600 mb-6">Canada is positioned as the fastest-growing market in North America, signaling high potential for return on investment.</p>
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 mt-16 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 accent-blue">The Divergent North American Luxury Consumer</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="text-center p-6 border-2 border-gray-200 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">🇺🇸 United States</h4>
+                        <ul class="space-y-3 text-left text-gray-700">
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Status & Self-Expression:</strong> Driven by celebrity culture and a desire for unique, personalized pieces.</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Price-to-Value:</strong> More sensitive to affordability and value comparisons within the luxury tier.</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Digital Discovery:</strong> More likely to use online magazines and digital channels for trend information.</li>
+                        </ul>
+                    </div>
+                    <div class="text-center p-6 border-2 border-gray-200 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">🇨🇦 Canada</h4>
+                        <ul class="space-y-3 text-left text-gray-700">
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Ethical & Sustainable:</strong> Places a high premium on ethically sourced materials (e.g., CanadaMark diamonds).</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Local Affinity:</strong> Strong preference for "Made in Canada" craftsmanship, supporting domestic brands.</li>
+                            <li class="flex items-start"><span class="accent-gold mr-3 mt-1">&#10003;</span> <strong>Print's Prestige:</strong> Views reading print magazines and newspapers as a luxurious experience in itself.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 mt-16 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 accent-blue">Cartier's Retail Footprint</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">The vast difference in the number of owned boutiques dictates fundamentally different channel strategies, mixing direct-to-consumer (DTC) and wholesale, which complicates sales-based modeling.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="text-center p-8 bg-gray-50 rounded-lg">
+                        <p class="text-7xl font-bold accent-gold">30</p>
+                        <p class="text-xl font-semibold mt-2">Boutiques in the U.S.</p>
+                    </div>
+                     <div class="text-center p-8 bg-gray-50 rounded-lg">
+                        <p class="text-7xl font-bold accent-gold">3</p>
+                        <p class="text-xl font-semibold mt-2">Boutiques in Canada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dilemma" class="mb-16 md:mb-24 fade-in">
+             <h2 class="text-3xl font-bold text-center mb-12 accent-gold">The Modeling Dilemma: Apples & Oranges</h2>
+             <p class="text-center text-gray-600 mb-12 max-w-4xl mx-auto">The core problem with a unified model lies in its foundational assumptions. The geographic units are not comparable, and the model incorrectly assumes that marketing effectiveness is constant across these profoundly different markets.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 accent-blue">🇺🇸 U.S. Designated Market Area (DMA)</h3>
+                    <div class="p-4 border-l-4 border-accent-gold bg-accent-gold/5">
+                        <p><strong>Defined By:</strong> The Nielsen Company (Private)</p>
+                        <p><strong>Basis:</strong> Television Viewing Habits</p>
+                        <p><strong>Concept:</strong> A "Media-Shed" - a region that consumes the same local TV content.</p>
+                        <p><strong>Purpose:</strong> Media planning and ad buying.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 accent-blue">🇨🇦 Canadian Census Metro Area (CMA)</h3>
+                     <div class="p-4 border-l-4 border-accent-gold bg-accent-gold/5">
+                        <p><strong>Defined By:</strong> Statistics Canada (Government)</p>
+                        <p><strong>Basis:</strong> Commuting & Economic Flows</p>
+                        <p><strong>Concept:</strong> A "Commuter-Shed" - a functional economic region.</p>
+                        <p><strong>Purpose:</strong> Socio-economic analysis.</p>
+                    </div>
+                </div>
+                 <div class="md:col-span-2 text-center mt-4">
+                    <p class="font-semibold text-red-700">Conclusion: DMAs and CMAs are methodologically incompatible as interchangeable units in a single-level panel model.</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-8 rounded-xl shadow-lg border border-gray-200 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 accent-blue">The Pitfall of "Pooling" Data</h3>
+                <p class="text-center text-gray-600 mb-8">A simple pooled model averages the distinct market realities, creating a single, misleading result. It masks the higher ROI in Canada's growth market and the nuanced performance across diverse U.S. regions.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="w-full md:w-1/2 p-4 border rounded-lg">
+                        <h4 class="font-bold text-center mb-2">The Reality: Heterogeneity</h4>
+                        <div class="relative h-48">
+                            <p class="absolute top-0 left-2 text-sm text-blue-600 font-semibold">Canada ROI</p>
+                            <div class="absolute w-full h-px bg-gray-300 top-1/2"></div>
+                            <div class="absolute h-full w-px bg-gray-300 left-1/2"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 30%; left: 40%;"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 25%; left: 55%;"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 20%; left: 70%;"></div>
+                            <div class="absolute w-full h-px bg-blue-600" style="top: 25%; transform: rotate(-10deg) translateX(-5%);"></div>
+
+                            <p class="absolute bottom-12 right-2 text-sm text-green-600 font-semibold">U.S. ROI</p>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 70%; left: 30%;"></div>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 65%; left: 45%;"></div>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 60%; left: 60%;"></div>
+                            <div class="absolute w-full h-px bg-green-600" style="top: 65%; transform: rotate(-5deg) translateX(-2%);"></div>
+                        </div>
+                        <p class="text-xs text-center text-gray-500 mt-2">Each market has a distinct response to media spend.</p>
+                    </div>
+                    <div class="w-full md:w-1/2 p-4 border rounded-lg bg-red-50 border-red-200">
+                        <h4 class="font-bold text-center mb-2 text-red-700">The Flawed Model: Pooling</h4>
+                        <div class="relative h-48">
+                            <div class="absolute w-full h-px bg-gray-300 top-1/2"></div>
+                            <div class="absolute h-full w-px bg-gray-300 left-1/2"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 30%; left: 40%;"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 25%; left: 55%;"></div>
+                            <div class="absolute w-2 h-2 bg-blue-600 rounded-full" style="top: 20%; left: 70%;"></div>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 70%; left: 30%;"></div>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 65%; left: 45%;"></div>
+                            <div class="absolute w-2 h-2 bg-green-600 rounded-full" style="top: 60%; left: 60%;"></div>
+                            <div class="absolute w-full h-px bg-red-500 border-dashed border-red-500" style="top: 48%; transform: rotate(-8deg) translateX(-4%);"></div>
+                        </div>
+                        <p class="text-xs text-center text-gray-500 mt-2">A single, averaged line gives a biased, non-actionable result.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="fade-in">
+            <h2 class="text-3xl font-bold text-center mb-12 accent-gold">The Path Forward: Hierarchical Modeling</h2>
+            <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-200">
+                <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">The recommended solution is a Hierarchical (or Multilevel) Marketing Mix Model. This advanced approach is designed for nested data, allowing it to respect market differences while producing stable, reliable estimates of media effectiveness.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6">
+                        <div class="bg-accent-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                        <h4 class="text-lg font-bold mb-2">Model Country Effects</h4>
+                        <p class="text-gray-600 text-sm">Estimates a specific ROI adjustment for Canada vs. the U.S., quantifying systemic differences.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-accent-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                        <h4 class="text-lg font-bold mb-2">Model Regional Effects</h4>
+                        <p class="text-gray-600 text-sm">Allows ROI to vary across different DMAs and CMAs, identifying top-performing regions.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-accent-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                        <h4 class="text-lg font-bold mb-2">"Borrow Strength"</h4>
+                        <p class="text-gray-600 text-sm">Uses data from all markets to improve the reliability of estimates for any single market, a process called "partial pooling."</p>
+                    </div>
+                </div>
+                <div class="mt-10 bg-green-50 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md" role="alert">
+                    <div class="flex">
+                        <div class="py-1"><svg class="fill-current h-6 w-6 text-green-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                        <div>
+                            <p class="font-bold">Strategic Business Impact</p>
+                            <p class="text-sm">This approach enables smarter budget allocation, tailored media strategies for each country, and a true, defensible measure of marketing ROI across North America.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Cartier North America | Internal Strategic Analysis</p>
+            <p class="text-xs text-gray-400 mt-2">This is a simulated interactive report based on publicly available market research data for illustrative purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const marketData = {
+                us: {
+                    marketSize: 17.36, 
+                    growth: 3.7
+                },
+                canada: {
+                    marketSize: 4.20,
+                    growth: 5.8
+                }
+            };
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#333333',
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#2c3e50',
+                        titleFont: {
+                            family: "'Inter', sans-serif"
+                        },
+                        bodyFont: {
+                            family: "'Inter', sans-serif"
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    if(context.chart.canvas.id === 'marketSizeChart') {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y) + 'B';
+                                    } else {
+                                        label += context.parsed.y + '%';
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e5e7eb'
+                        },
+                        ticks: {
+                            color: '#6b7280'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#6b7280'
+                        }
+                    }
+                }
+            };
+            
+            const marketSizeCtx = document.getElementById('marketSizeChart').getContext('2d');
+            new Chart(marketSizeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['United States', 'Canada'],
+                    datasets: [{
+                        label: 'Market Size (USD Billions)',
+                        data: [marketData.us.marketSize, marketData.canada.marketSize],
+                        backgroundColor: ['#2c3e50', '#C0A080'],
+                        borderColor: ['#2c3e50', '#C0A080'],
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions
+            });
+
+            const growthCtx = document.getElementById('growthChart').getContext('2d');
+            new Chart(growthCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['United States', 'Canada'],
+                    datasets: [{
+                        label: 'Projected CAGR (%)',
+                        data: [marketData.us.growth, marketData.canada.growth],
+                        backgroundColor: ['#2c3e50', '#C0A080'],
+                        borderColor: ['#2c3e50', '#C0A080'],
+                        borderWidth: 1
+                    }]
+                },
+                 options: chartOptions
+            });
+
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    if (mobileMenu.offsetParent !== null) {
+                       mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+            
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navHighlighter = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 90) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', navHighlighter);
+            navHighlighter(); 
+        });
+    </script>
+</body>
+</html>
